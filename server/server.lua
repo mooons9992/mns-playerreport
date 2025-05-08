@@ -1,5 +1,14 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local Utils = require 'utils.utils'
+
+-- Direct inclusion of Utils from the file
+local Utils = {}
+local utilsFile = LoadResourceFile(GetCurrentResourceName(), "utils/utils.lua")
+if utilsFile then
+    Utils = load(utilsFile)() or {}
+    print("^2[MNS REPORT SYSTEM]^7 Utils module loaded successfully")
+else
+    print("^1[MNS REPORT SYSTEM]^7 Failed to load Utils module")
+end
 
 -- Local configuration reference
 local config = Config

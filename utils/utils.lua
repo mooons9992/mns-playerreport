@@ -1,5 +1,10 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+-- String trimming extension
+function string.trim(s)
+    return s:match"^%s*(.*)":match"(.-)%s*$"
+ end
+
 local Utils = {}
 
 -- Permission check function with QBCore support
