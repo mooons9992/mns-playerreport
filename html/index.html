@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNS Report System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Player Report Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content report-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-triangle"></i> Submit a Report</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="reportMessage">Describe your issue:</label>
+                    <textarea id="reportMessage" placeholder="Please explain what happened..." maxlength="128"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/128</div>
+                </div>
+                <div class="button-group">
+                    <button id="submitReport" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <button id="cancelReport" class="btn btn-danger"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+                <div id="cooldownTimer" class="cooldown-timer hidden">
+                    <i class="fas fa-hourglass-half"></i> Cooldown: <span id="cooldownTime">00:00</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="branding">MNS Report System v1.0.0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Reports Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content admin-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-clipboard-list"></i> Active Reports</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="reportsList" class="reports-list">
+                    <!-- Reports will be populated here by JavaScript -->
+                    <div class="no-reports">No active reports</div>
+                </div>
+                <div class="filter-controls">
+                    <button id="filterAllReports" class="filter-btn active"><i class="fas fa-list"></i> All</button>
+                    <button id="filterPendingReports" class="filter-btn"><i class="fas fa-clock"></i> Pending</button>
+                    <button id="filterInProgressReports" class="filter-btn"><i class="fas fa-spinner"></i> In Progress</button>
+                    <button id="filterResolvedReports" class="filter-btn"><i class="fas fa-check-circle"></i> Resolved</button>
+                </div>
+                <div class="button-group">
+                    <button id="refreshReports" class="btn btn-info"><i class="fas fa-sync"></i> Refresh</button>
+                    <button id="closeAdminModal" class="btn btn-danger"><i class="fas fa-times"></i> Close</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="branding">MNS Admin Report System v1.0.0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Notification -->
+    <div id="adminNotification" class="admin-notification hidden">
+        <div class="notification-header">
+            <h3><i class="fas fa-bell"></i> New Report <span id="notificationReportId">#0</span></h3>
+            <span class="notification-close">&times;</span>
+        </div>
+        <div class="notification-body">
+            <p><strong>Player:</strong> <span id="notificationPlayerName">Unknown</span></p>
+            <p><strong>Issue:</strong> <span id="notificationMessage">No message</span></p>
+            <div class="notification-buttons">
+                <button id="notificationTeleport" class="btn btn-info"><i class="fas fa-location-arrow"></i> Teleport</button>
+                <button id="notificationViewDetails" class="btn btn-primary"><i class="fas fa-search"></i> Details</button>
+                <button id="notificationClose" class="btn btn-danger"><i class="fas fa-times"></i> Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Report Details Modal -->
+    <div id="reportDetailsModal" class="modal">
+        <div class="modal-content details-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-alt"></i> Report Details <span id="detailsReportId">#0</span></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="details-section">
+                    <h3>Player Information</h3>
+                    <div class="detail-row">
+                        <div class="detail-label">Name:</div>
+                        <div id="detailsPlayerName" class="detail-value">Unknown</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">ID:</div>
+                        <div id="detailsPlayerId" class="detail-value">0</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Character:</div>
+                        <div id="detailsCharInfo" class="detail-value">Unknown</div>
+                    </div>
+                </div>
+                <div class="details-section">
+                    <h3>Report Information</h3>
+                    <div class="detail-row">
+                        <div class="detail-label">Status:</div>
+                        <div id="detailsStatus" class="detail-value status-pending">Pending</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Submitted:</div>
+                        <div id="detailsTimestamp" class="detail-value">Unknown</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Message:</div>
+                        <div id="detailsMessage" class="detail-value message-box">No message provided</div>
+                    </div>
+                </div>
+                <div class="details-actions">
+                    <button id="detailsTeleport" class="btn btn-info"><i class="fas fa-location-arrow"></i> Teleport</button>
+                    <button id="detailsCloseReport" class="btn btn-success"><i class="fas fa-check"></i> Mark as Resolved</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements for notifications -->
+    <audio id="notificationSound">
+        <source src="sounds/notification.ogg" type="audio/ogg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

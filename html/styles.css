@@ -1,0 +1,560 @@
+/* Main Variables */
+:root {
+    --primary-color: rgba(0, 123, 255, 0.95);
+    --secondary-color: rgba(52, 58, 64, 0.95);
+    --success-color: rgba(40, 167, 69, 0.95);
+    --danger-color: rgba(220, 53, 69, 0.95);
+    --warning-color: rgba(255, 193, 7, 0.95);
+    --info-color: rgba(23, 162, 184, 0.95);
+    --light-color: rgba(240, 240, 240, 0.95);
+    --dark-color: rgba(33, 37, 41, 0.95);
+    --text-color: rgb(255, 255, 255);
+    --text-dark: rgb(33, 37, 41);
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 5px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+    --mns-blue: rgba(10, 108, 255, 0.95);
+    --mns-darker-blue: rgba(8, 86, 204, 0.95);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    background-color: transparent;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 80%;
+    max-width: 500px;
+    color: var(--text-color);
+    animation: modalFadeIn 0.3s;
+}
+
+.details-modal .modal-content {
+    max-width: 600px;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    background-color: var(--mns-blue);
+    padding: 15px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.modal-header h2 i {
+    margin-right: 10px;
+}
+
+#detailsReportId {
+    font-size: 16px;
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 10px 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: right;
+}
+
+.branding {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.close {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close:hover {
+    color: var(--warning-color);
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    background-color: var(--dark-color);
+    color: var(--text-color);
+    font-size: 16px;
+    min-height: 120px;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.char-counter {
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button Styles */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--mns-blue);
+    color: var(--text-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--mns-darker-blue);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--text-color);
+}
+
+.btn-danger:hover {
+    background-color: rgba(200, 35, 51, 0.95);
+}
+
+.btn-info {
+    background-color: var(--info-color);
+    color: var(--text-color);
+}
+
+.btn-info:hover {
+    background-color: rgba(17, 141, 162, 0.95);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--text-color);
+}
+
+.btn-success:hover {
+    background-color: rgba(32, 138, 56, 0.95);
+}
+
+/* Reports List Styles */
+.reports-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.report-item {
+    background-color: var(--dark-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.report-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.report-id {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-status {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: inline-block;
+}
+
+.report-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 5px;
+}
+
+.report-player {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.report-message {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.report-buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.report-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.no-reports {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn.active {
+    background-color: var(--mns-blue);
+    font-weight: bold;
+}
+
+/* Admin Notification */
+.admin-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    z-index: 1000;
+    animation: notificationSlideIn 0.5s;
+}
+
+@keyframes notificationSlideIn {
+    from {opacity: 0; transform: translateX(50px);}
+    to {opacity: 1; transform: translateX(0);}
+}
+
+.notification-header {
+    background-color: var(--mns-blue);
+    padding: 10px 15px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-header h3 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification-body {
+    padding: 15px;
+}
+
+.notification-body p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.notification-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.notification-close {
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.notification-close:hover {
+    color: var(--warning-color);
+}
+
+/* Cooldown Timer */
+.cooldown-timer {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+/* Report Details Styles */
+.details-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.details-section h3 {
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.detail-label {
+    width: 25%;
+    min-width: 100px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.detail-value {
+    flex: 1;
+}
+
+.message-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 3px;
+    margin-top: 5px;
+    line-height: 1.5;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.details-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Status Colors */
+.status-pending {
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+.status-in-progress {
+    color: var(--info-color);
+    font-weight: bold;
+}
+
+.status-resolved {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+/* Report background colors based on status */
+.report-pending {
+    border-left: 4px solid var(--warning-color);
+}
+
+.report-inProgress {
+    border-left: 4px solid var(--info-color);
+}
+
+.report-resolved {
+    border-left: 4px solid var(--success-color);
+    opacity: 0.7;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Add responsive design for smaller screens */
+@media only screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+    
+    .report-item {
+        flex-direction: column;
+    }
+    
+    .report-buttons {
+        margin-top: 15px;
+        justify-content: center;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .admin-notification {
+        width: 90%;
+        right: 5%;
+    }
+}
+
+/* Animation for notifications and other elements */
+.fadeIn {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--warning-color), 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--warning-color), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--warning-color), 0);
+    }
+}
