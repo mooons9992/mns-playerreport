@@ -88,7 +88,7 @@ Config.Discord = {
     enabled = true, -- Set to true to enable Discord webhooks
     
     -- Make sure this URL is correct and complete
-    webhookURL = "https://discord.com/api/webhooks/1368645351178764450/vl6YdXzoWJBlwFszXANQnJsIsEQXnIsRsjJTTV-R0zCQbA8qlAfigXLpLGQX3M8oyR9A",
+    webhookURL = "",
     webhookName = "Report System", -- Name that will appear as the webhook author
     webhookAvatar = "", -- URL to the avatar image for the webhook
     
