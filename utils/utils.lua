@@ -118,10 +118,12 @@ function Utils.SendDiscordWebhook(webhookData)
     
     -- Send the webhook
     PerformHttpRequest(Config.Discord.webhookURL, function(err, text, headers)
-        if err ~= 201 then
+        if err == 201 or err == 204 then
+            if Config.Debug then
+                print("[REPORT SYSTEM] Discord webhook sent successfully with code: " .. tostring(err))
+            end
+        else
             print("[REPORT SYSTEM] Discord webhook failed with error: " .. tostring(err))
-        elseif Config.Debug then
-            print("[REPORT SYSTEM] Discord webhook sent successfully")
         end
     end, 'POST', jsonData, { ['Content-Type'] = 'application/json' })
 end

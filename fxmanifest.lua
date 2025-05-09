@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'mooons9992'
 description 'MNS Player Report System'
-version '1.0.0'
+version '1.1.0'
 
 lua54 'yes'
 

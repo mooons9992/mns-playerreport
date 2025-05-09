@@ -2,7 +2,7 @@ Config = {}
 
 -- Version information
 Config.Version = {
-    number = "1.0.0", 
+    number = "1.1.0", 
     name = "Initial Release",
     check = true -- Enable version checking
 }

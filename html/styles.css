@@ -330,7 +330,8 @@ textarea:focus {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 350px;
+    width: 380px; /* Increased width to fit buttons better */
+    max-width: 95vw;
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -371,11 +372,20 @@ textarea:focus {
     line-height: 1.4;
 }
 
+/* FIXED: Notification buttons layout to prevent overflow */
 .notification-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 8px;
     margin-top: 15px;
+    flex-wrap: wrap; /* Allow buttons to wrap if needed */
+}
+
+/* FIXED: Make buttons more compact to fit in notification */
+.notification-buttons .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .notification-close {
@@ -530,6 +540,12 @@ textarea:focus {
     .admin-notification {
         width: 90%;
         right: 5%;
+    }
+    
+    /* Ensure buttons don't overflow on mobile */
+    .notification-buttons .btn {
+        padding: 6px 10px;
+        font-size: 12px;
     }
 }
 
