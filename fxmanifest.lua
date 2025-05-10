@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'mooons9992'
+author 'Mooons'
 description 'MNS Player Report System'
 version '1.1.0'
 
